@@ -1,6 +1,6 @@
 <?php
 
-class autos
+class auto
 {
     public $id;
     public $marca;
@@ -29,7 +29,7 @@ class autos
             //Obtener la lista de usuarios 
             while ($autos = $resultado->fetch_object()) {
 
-                $listaAutos[] = new autos($autos->id, $autos->marca, $autos->modelo, $autos->año, $autos->precio, $autos->descripcion);
+                $listaAutos[] = new auto($autos->id, $autos->marca, $autos->modelo, $autos->año, $autos->precio, $autos->descripcion);
             }
         }
 
@@ -68,7 +68,7 @@ class autos
                 //Obtenemos el resultado como un objeto
                 $autos = $resultado->fetch_object();
 
-                return  new autos($autos->id, $autos->marca, $autos->modelo, $autos->año, $autos->precio, $autos->descripcion);
+                return  new auto($autos->id, $autos->marca, $autos->modelo, $autos->año, $autos->precio, $autos->descripcion);
 
                 //Devolvemos un objeto del tipo Producto
 

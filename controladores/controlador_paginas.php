@@ -26,7 +26,7 @@ class ControladorPaginas
     }
 
     private function inicio(){
-        $autos = autos::consultar();
+        $autos = auto::consultar();
 
         return include_once "vistas/Autos/inicio.php";
     }
@@ -39,13 +39,13 @@ class ControladorPaginas
             $precio = $_POST['precio'];
             $descripcion=$_POST['descripcion'];
 
-            autos::registrar($marca, $modelo, $año, $precio,$descripcion);
+            auto::registrar($marca, $modelo, $año, $precio,$descripcion);
         }
         return include_once "vistas/Autos/registrar.php";
     }
     private function editar(){
         if(isset($_GET['id'])){
-            $autos=  autos::buscar($_GET['id']);
+            $autos=  auto::buscar($_GET['id']);
         }
 
         if($_POST){
@@ -56,7 +56,7 @@ class ControladorPaginas
             $año = $_POST['año'];
             $precio = $_POST['precio'];
             $descripcion=$_POST['descripcion'];
-            autos::editar($id,$marca, $modelo, $año, $precio,$descripcion);
+            auto::editar($id,$marca, $modelo, $año, $precio,$descripcion);
             header("Location:./?accion=inicio");
         }
 
