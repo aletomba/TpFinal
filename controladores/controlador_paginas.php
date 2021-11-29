@@ -30,6 +30,15 @@ class ControladorPaginas
 
         return include_once "vistas/Autos/inicio.php";
     }
+
+    private function borrar(){
+        if(isset($_GET['id'])){
+            auto::borrar($_GET['id']);
+
+            header("Location:./?accion=inicio");
+        }
+        
+    }
     private function registrar(){
         //Verificamos que los datos se hallan enviado por el metodo POST
         if($_POST){
@@ -47,6 +56,7 @@ class ControladorPaginas
         if(isset($_GET['id'])){
             $autos=  auto::buscar($_GET['id']);
         }
+        else echo "error de coneccion";
 
         if($_POST){
             print_r($_POST);

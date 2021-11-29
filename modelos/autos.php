@@ -96,4 +96,14 @@ class auto
             echo "Hubo un error al actualizar el automovil: " . mysqli_error($conexion);
         }
     }
+
+    public static function borrar($id){
+        $conexion = BD::crearConexion();
+        $query = "DELETE FROM autos WHERE id = '$id'";
+        $exito = mysqli_query($conexion, $query);
+
+        if(!$exito){
+            echo "Hubo un error al eliminar el auto: ".mysqli_error($conexion);
+        }
+    }
 }
