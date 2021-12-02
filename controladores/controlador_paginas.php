@@ -45,6 +45,16 @@ class ControladorPaginas
         return include_once "vistas/Auto/registrar.php";
     }
 
+    private function BuscarAuto()
+    {
+        if (isset($_POST['buscar']))
+        {                  
+            $autos=auto::busqueda_nombre($_POST['marca']);
+        }
+      return include_once "vistas/Auto/inicio.php";
+    }
+    
+
     private function editar(){
         if(isset($_GET['id'])){
             $auto =  auto::buscar($_GET['id']);

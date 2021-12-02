@@ -29,20 +29,21 @@ class auto
             //Obtener la lista de usuarios 
             while ($auto = $resultado->fetch_object()) {
 
-                $listaAutos[] = new auto ($auto->id, $auto->marca, $auto->modelo, $auto->año, $auto->precio, $auto->descripcion);
+                $listaAutos[] = new auto($auto->id, $auto->marca, $auto->modelo, $auto->año, $auto->precio, $auto->descripcion);
             }
         }
 
         return $listaAutos;
     }
 
-    public static function borrar($id){
+    public static function borrar($id)
+    {
         $conexion = BD::crearConexion();
         $query = "DELETE FROM autos WHERE id = '$id'";
         $exito = mysqli_query($conexion, $query);
 
-        if(!$exito){
-            echo "Hubo un error al eliminar auto: ".mysqli_error($conexion);
+        if (!$exito) {
+            echo "Hubo un error al eliminar auto: " . mysqli_error($conexion);
         }
     }
 
@@ -61,6 +62,23 @@ class auto
         } else {
             echo "Hubo un error al guardar los datos" . mysqli_error($conexion);
         }
+    }
+
+    public static function busqueda_nombre($marca)
+    {
+        $listaAutos = [];
+        $conexion = BD::crearConexion();
+        $consulta = "SELECT * FROM autos WHERE marca ='$marca' ";
+        if ($resultado = mysqli_query($conexion, $consulta)) {
+            //Obtener la lista de usuarios
+            if (mysqli_num_rows($resultado) > 0) {
+                while ($auto = $resultado->fetch_object()) {
+
+                    $listaAutos[] = new auto($auto->id, $auto->marca, $auto->modelo, $auto->año, $auto->precio, $auto->descripcion);
+                }
+           }
+        } else echo "no hay autos con esa marca";
+        return $listaAutos;
     }
 
     public static function buscar($id)
@@ -107,4 +125,4 @@ class auto
             echo "Hubo un error al actualizar el automovil: " . mysqli_error($conexion);
         }
     }
-}?>
+}
