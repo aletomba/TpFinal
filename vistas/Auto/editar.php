@@ -1,4 +1,4 @@
-<!-- Vista desde donde editaremos un Auto -->
+
 <div class="card" color="blue">   
 <div class="card-header">
         Editar Auto
@@ -40,7 +40,7 @@
                 id="descripcion" value="<?php echo $auto->descripcion ?>" aria-describedby="helpId" placeholder="descripcion">
             </div>
 
-            <input name="" id="" class="btn btn-success" type="submit" value="Editar producto">
+            <input name="" id="" class="btn btn-success" type="submit" value="Confirmar">
             <a href="index.php?accion=inicio" class="btn btn-primary">Cancelar</a>
         </form>
     </div>

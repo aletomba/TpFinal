@@ -1,4 +1,3 @@
-<!-- Vista desde donde registraremos un producto -->
 <div class="card">
     <div class="card-header">
         Agregar Auto
@@ -30,7 +29,7 @@
               <input type="text"
                 class="form-control" name="descripcion" id="descripcion" aria-describedby="helpId" placeholder="Descripcion del vehiculo">
             </div>
-            <input name="" id="" class="btn btn-success" type="submit" value="Agregar auto">
+            <input name="" id="" class="btn btn-success" type="submit" value="Registrar">
             <a href="index.php?accion=inicio" class="btn btn-primary">Cancelar</a>
         </form>
     </div>

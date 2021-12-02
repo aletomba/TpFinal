@@ -26,7 +26,7 @@ class auto
         $conexion = BD::crearConexion();
         $consulta = "SELECT * FROM autos";
         if ($resultado = mysqli_query($conexion, $consulta)) {
-            //Obtener la lista de usuarios 
+            
             while ($auto = $resultado->fetch_object()) {
 
                 $listaAutos[] = new auto ($auto->id, $auto->marca, $auto->modelo, $auto->año, $auto->precio, $auto->descripcion);
@@ -34,6 +34,30 @@ class auto
         }
 
         return $listaAutos;
+    }
+
+    public static function filtrarMarca($marca){
+        print_r($marca);
+        $listaAutos = [];
+        $conexion = BD::crearConexion();
+        $consulta = "SELECT * FROM autos Where marca LIKE '%$marca%'";
+        $resultado = mysqli_query($conexion, $consulta);
+        if ($resultado) {
+            if (mysqli_num_rows($resultado) > 0){
+
+            while ($auto = $resultado->fetch_object()) {
+
+                $listaAutos[] = new auto ($auto->id, $auto->marca, $auto->modelo, $auto->año, $auto->precio, $auto->descripcion);
+            }
+           
+            return $listaAutos; 
+            } else {
+            echo "No hay autos registrados con esa marca";
+            } 
+        }else {
+            echo "Hubo un error al filtrar autos por marca" . mysqli_error($conexion);
+            }
+        
     }
 
     public static function borrar($id){
@@ -65,7 +89,6 @@ class auto
 
     public static function buscar($id)
     {
-        //Obtenemos una conexion a la base de datos
         $conexion = BD::crearConexion();
         //Armamos la consulta que sera ejecutada en la base de datos
         $query = "SELECT * FROM autos WHERE id = '$id' ";
